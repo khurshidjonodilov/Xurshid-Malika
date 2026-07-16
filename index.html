@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Xurshid & Malika — To'y taklifnomasi</title>
+<meta name="description" content="Xurshid va Malikaning to'yiga sizni taklif qilamiz — 25-may, 2027-yil.">
+
+<!-- ==========================================================================
+     IJTIMOIY TARMOQ PREVIEW · ПРЕВЬЮ ДЛЯ TELEGRAM / WHATSAPP
+     Saytni GitHub Pages'ga joylagach, quyidagi 3 ta joyda
+     PUT-YOUR-SITE-URL-HERE ni haqiqiy manzilingizga almashtiring, masalan:
+     https://SIZNING-LOGIN.github.io/SIZNING-REPO/
+     (bu qatorlarni JS emas, qo'lda tahrirlaysiz — botlar JS ishlatmaydi)
+     ========================================================================== -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Xurshid & Malika — To'y taklifnomasi">
+<meta property="og:description" content="Xurshid va Malikaning to'yiga sizni taklif qilamiz — 25-may, 2027-yil.">
+<meta property="og:image" content="https://PUT-YOUR-SITE-URL-HERE/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://PUT-YOUR-SITE-URL-HERE/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Xurshid & Malika — To'y taklifnomasi">
+<meta name="twitter:description" content="Xurshid va Malikaning to'yiga sizni taklif qilamiz — 25-may, 2027-yil.">
+<meta name="twitter:image" content="https://PUT-YOUR-SITE-URL-HERE/og-cover.jpg">
+<meta name="theme-color" content="#c8a25e">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Til almashtirgich · переключатель языка -->
+<div class="lang-toggle" id="langToggle">
+  <button data-lang="uz">UZ</button>
+  <button data-lang="ru">RU</button>
+</div>
+
+<!-- Cover / opening screen -->
+<div class="cover" id="cover">
+  <div class="cover-content">
+    <p class="eyebrow" id="coverEyebrow">Siz taklif qilindingiz</p>
+    <div class="cover-names">
+      <span id="coverGroom">Xurshid</span>
+      <span class="ampersand">&amp;</span>
+      <span id="coverBride">Malika</span>
+    </div>
+    <div class="divider"><span></span><i>&#10047;</i><span></span></div>
+    <p class="cover-date" id="coverDate">25-may, 2027-yil</p>
+    <button class="btn-open" id="openBtn">&#10047; <span id="openBtnText">Taklifnomani ochish</span> &#10047;</button>
+  </div>
+</div>
+
+<!-- Floating music toggle -->
+<button class="music-toggle" id="musicToggle" aria-label="Musiqa">
+  <svg class="music-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path id="musicIconPath" d="M9 18V5l12-2v13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="6" cy="18" r="3" stroke="currentColor" stroke-width="1.6"/>
+    <circle cx="18" cy="16" r="3" stroke="currentColor" stroke-width="1.6"/>
+  </svg>
+</button>
+<audio id="bgMusic" loop preload="auto"></audio>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content" data-animate>
+    <p class="eyebrow" id="heroEyebrow">Sizni taklif qilmoqchimiz</p>
+    <div class="hero-names">
+      <span id="groomNameHero">Xurshid</span>
+      <span class="ampersand">&amp;</span>
+      <span id="brideNameHero">Malika</span>
+    </div>
+    <div class="divider"><span></span><i>&#10047;</i><span></span></div>
+    <p class="hero-date" id="heroDate">25-may, 2027-yil</p>
+  </div>
+  <div class="scroll-down" id="scrollDown">
+    <span></span>
+    <p id="scrollHint">pastga</p>
+  </div>
+</section>
+
+<!-- COUNTDOWN -->
+<section class="countdown-section" data-animate>
+  <div class="section-heading">
+    <p class="eyebrow" id="countdownEyebrow">To'yimizgacha</p>
+    <div class="divider small"><span></span><i>&#10047;</i><span></span></div>
+  </div>
+  <div class="countdown" id="countdown">
+    <div class="countdown-box">
+      <span class="countdown-num" id="cd-days">00</span>
+      <span class="countdown-label" id="lbl-days">kun</span>
+    </div>
+    <div class="countdown-box">
+      <span class="countdown-num" id="cd-hours">00</span>
+      <span class="countdown-label" id="lbl-hours">soat</span>
+    </div>
+    <div class="countdown-box">
+      <span class="countdown-num" id="cd-minutes">00</span>
+      <span class="countdown-label" id="lbl-minutes">daqiqa</span>
+    </div>
+    <div class="countdown-box">
+      <span class="countdown-num" id="cd-seconds">00</span>
+      <span class="countdown-label" id="lbl-seconds">soniya</span>
+    </div>
+  </div>
+</section>
+
+<!-- INVITATION MESSAGE -->
+<section class="invite-section" data-animate>
+  <div class="invite-image">
+    <img id="coupleImg" src="" alt="Kelin-kuyov">
+    <div class="invite-image-frame"></div>
+  </div>
+  <div class="invite-text">
+    <p class="eyebrow" id="inviteTitle">Bizning to'yimizga</p>
+    <h2 class="script-heading" id="inviteSubtitle">Marhamat qilib tashrif buyurishingizni so'raymiz</h2>
+    <p class="invite-message" id="welcomeMessage"></p>
+    <div class="invite-details">
+      <div class="invite-detail-item">
+        <span class="detail-label" id="detailDateLabel">Sana</span>
+        <span class="detail-value" id="detailDate"></span>
+      </div>
+      <div class="invite-detail-item">
+        <span class="detail-label" id="detailTimeLabel">Vaqt</span>
+        <span class="detail-value" id="detailTime"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-section" data-animate>
+  <div class="section-heading">
+    <p class="eyebrow" id="galleryEyebrow">Xotira lahzalari</p>
+    <div class="divider small"><span></span><i>&#10047;</i><span></span></div>
+  </div>
+  <div class="gallery-grid" id="galleryGrid"></div>
+</section>
+
+<!-- LOCATION -->
+<section class="location-section" data-animate>
+  <div class="section-heading">
+    <p class="eyebrow" id="locationEyebrow">Manzil</p>
+    <div class="divider small"><span></span><i>&#10047;</i><span></span></div>
+    <h3 class="venue-name" id="venueName"></h3>
+    <p class="venue-address" id="venueAddress"></p>
+  </div>
+  <div class="map-wrap">
+    <iframe id="mapFrame" src="" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+  <a class="btn-gold" id="directionsBtn" href="#" target="_blank" rel="noopener"><span id="directionsText">Yo'nalish olish</span></a>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" data-animate>
+  <div class="divider"><span></span><i>&#10047;</i><span></span></div>
+  <p class="footer-message" id="footerMessage">Sizni kutamiz!</p>
+  <p class="footer-names" id="footerNames">Xurshid &amp; Malika</p>
+</footer>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose">&times;</button>
+  <button class="lightbox-nav lightbox-prev" id="lightboxPrev">&#10094;</button>
+  <img id="lightboxImg" src="" alt="">
+  <button class="lightbox-nav lightbox-next" id="lightboxNext">&#10095;</button>
+</div>
+
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
