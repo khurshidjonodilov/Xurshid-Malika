@@ -353,3 +353,13 @@ body.locked { overflow: hidden; height: 100vh; }
   .lang-toggle { top: 14px; right: 14px; }
   .lang-toggle button { padding: 5px 12px; font-size: 0.72rem; }
 }
+
+/* ---------- "Yozuv mashinkasi" kursori · курсор печатной машинки ---------- */
+.tw-caret {
+  display: inline-block;
+  margin-left: 2px;
+  font-weight: 300;
+  color: var(--color-gold-light);
+  animation: tw-blink 0.9s step-end infinite;
+}
+@keyframes tw-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }

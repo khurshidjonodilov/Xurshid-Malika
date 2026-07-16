@@ -20,11 +20,15 @@
     if (el && value !== undefined) el.textContent = value;
   };
 
+  let twRunning = false; // typewriter ishlayaptimi
+
   function applyTexts() {
     setText("groomNameHero", cfg.groomName);
     setText("brideNameHero", cfg.brideName);
-    setText("coverGroom", cfg.groomName);
-    setText("coverBride", cfg.brideName);
+    if (!twRunning) {
+      setText("coverGroom", cfg.groomName);
+      setText("coverBride", cfg.brideName);
+    }
     setText("heroDate", pick(cfg.displayDate));
     setText("coverDate", pick(cfg.displayDate));
 
@@ -175,4 +179,58 @@
   });
 
   setLang(lang);
+
+  /* ---------- Ismlar uchun "yozuv mashinkasi" effekti · эффект печатной машинки ---------- */
+  function runCoverTypewriter() {
+    const groomEl = document.getElementById("coverGroom");
+    const brideEl = document.getElementById("coverBride");
+    const ampEl = document.querySelector("#cover .ampersand");
+    if (!groomEl || !brideEl) return;
+
+    const groom = cfg.groomName || "";
+    const bride = cfg.brideName || "";
+
+    // Harakatni kamaytirish yoqilgan bo'lsa — darrov to'liq ko'rsatamiz
+    const reduce = window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) return;
+
+    twRunning = true;
+    groomEl.textContent = "";
+    brideEl.textContent = "";
+    if (ampEl) ampEl.style.opacity = "0";
+
+    const caret = document.createElement("span");
+    caret.className = "tw-caret";
+    caret.textContent = "|";
+
+    const type = (el, text, speed, done) => {
+      el.appendChild(caret);
+      let i = 0;
+      (function step() {
+        if (i <= text.length) {
+          caret.remove();
+          el.textContent = text.slice(0, i);
+          el.appendChild(caret);
+          i++;
+          setTimeout(step, speed);
+        } else if (done) {
+          done();
+        }
+      })();
+    };
+
+    // 1) kuyov ismi -> 2) "&" ko'rinadi -> 3) kelin ismi -> 4) kursor o'chadi
+    setTimeout(() => {
+      type(groomEl, groom, 130, () => {
+        if (ampEl) { ampEl.style.transition = "opacity .5s ease"; ampEl.style.opacity = "1"; }
+        setTimeout(() => {
+          type(brideEl, bride, 130, () => {
+            setTimeout(() => { caret.remove(); twRunning = false; }, 1400);
+          });
+        }, 450);
+      });
+    }, 500);
+  }
+  runCoverTypewriter();
 })();
